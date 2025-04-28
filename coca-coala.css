@@ -1,0 +1,275 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+  user-select: none;
+}
+
+body {
+  background-image: url('image/coca-coala-background.png');
+  background-size: cover;
+  background-position: center;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-size: 8vw;
+  margin: 20px 0 10px;
+  color: white;
+  text-align: center;
+}
+
+#score {
+  font-size: 5vw;
+  color: white;
+  margin-bottom: 10px;
+}
+
+#game {
+  position: relative;
+  width: 80vw;
+  aspect-ratio: 5 / 4;
+  max-width: 480px;
+  min-height: 300px;
+  max-height: 90vh;
+  background: linear-gradient(to top, #fff, #ffe0e0);
+  border: 4px solid white;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+#life {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  color: red;
+}
+
+#koala {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 70px;
+  height: 70px;
+  font-size: 40px;
+}
+
+.falling {
+  position: absolute;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 32px;
+}
+
+.miss-effect {
+  position: absolute;
+  font-size: 1.2em;
+  color: #ff0000;
+  font-weight: bold;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  z-index: 1000;
+}
+
+.no-damage-effect {
+    position: absolute;
+    font-size: 0.8em;
+    color: green;
+    font-weight: bold;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    z-index: 1000;
+  } 
+
+.control-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.control-button {
+    width: 100px;
+    height: 100px;
+    font-size: 3rem;
+    border: none;
+    background-color: white;
+    color: #ff2a2a;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 0.9;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#left-btn {
+    border-top-left-radius: 100px;
+    border-bottom-left-radius: 100px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: 2px solid #ccc; /* 境界線 */
+  }
+  
+  #right-btn {
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  #left-btn, #right-btn {
+    touch-action: none;
+  }
+  
+
+#startBtn {
+  font-size: 5vw;
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  color: #ff2a2a;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#hitEffect {
+  position: absolute;
+  font-size: 1.2em;
+  font-weight: bold;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 1000;
+  max-width: 140px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.hit-coke {
+  color: #ff4081;
+}
+
+.hit-earth {
+  color: #0077cc;
+}
+
+.hit-1up {
+  color: #ff4081;
+}
+
+#gameOverContainer {
+    position: absolute;
+    top: 0%; /* ← 少し上に移動（30% → 25%） */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    display: none;
+    width: 100%;
+  }
+  
+  #gameOverImage {
+    width: 200%; /* ← 大きくする（80% → 95%） */
+    max-width: 95%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  #submitScoreButton {
+    display: none; /* 初期は非表示 */
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    font-size: 5vw;
+    padding: 12px 24px;
+    border: 2px solid red;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin: 0 auto; /* ← これで中央寄せ */
+    margin-top: -25px;
+    display: block; /* ← これも必要（inlineだとmarginが効かない） */
+  }
+  
+  #submitScoreButton:hover {
+    background-color: red;
+    color: white;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+
+@keyframes boom {
+  from { transform: scale(1); opacity: 1; }
+  to { transform: scale(1.2); opacity: 0.8; }
+}
+  
+#rankingArea {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#rankingList {
+  display: inline-block;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.rankItem {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  font-size: 4vw;
+  font-weight: bold;
+}
+
+#rankingArea {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#rankingList {
+  display: inline-block;
+  text-align: left;
+  background: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.rankItem {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  font-size: 4vw;
+  font-weight: bold;
+}
+
+.rankNumber {
+  width: 40px;
+  text-align: center;
+  color: red;
+  font-size: 5vw;
+}
+
+.rankNameScore {
+  margin-left: 10px;
+}

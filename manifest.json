@@ -1,0 +1,15 @@
+{
+  "name": "CocaCoala",
+  "short_name": "C.Coala",
+  "start_url": "./index-cola.html",
+  "display": "standalone",
+  "background_color": "#F03523",
+  "theme_color": "#F03523",
+  "icons": [
+    {
+      "src": "/image/coca-coala-app-icon-circle.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
