@@ -7,7 +7,7 @@ html, body {
 }
 
 body {
-  background-image: url('image/coca-coala-background.png');
+  background-image: url('/image/coca-coala-background.png');
   background-size: cover;
   background-position: center;
   font-family: sans-serif;
