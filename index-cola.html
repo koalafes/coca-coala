@@ -25,19 +25,23 @@
   <div id="hitEffect"></div>
   <div id="missEffect" class="miss-effect"></div>
   <div id="noDamageEffect" class="no-damage-effect"></div>
-  <div id="gameOverContainer" style="display: none;">
+</div>
+<!-- オーバーレイ背景（初期は非表示） -->
+<div id="overlay" style="display: none;">
+  <div id="gameOverContainer">
     <img id="gameOverImage" src="image/score.png" alt="Score Frame">
-    <button id="submitScoreButton" style="display: none;">スコアを記録📝</button>
-    <div id="shareButtons" style="text-align: center; margin-top: 20px;">
-      <a id="xShareButton" href="" target="_blank" style="margin: 10px;">
+    <button id="submitScoreButton">スコアを記録📝</button>
+    <div id="shareButtons">
+      <a id="xShareButton" href="" target="_blank">
         <img src="/image/x-share-icon.png">
       </a>
-      <a id="lineShareButton" href="" target="_blank" style="margin: 10px;">
-        <img src="/image/line-share-icon.png" alt="LINEでシェア" style="width: 40px; height: 40px;">
+      <a id="lineShareButton" href="" target="_blank">
+        <img src="/image/line-share-icon.png">
       </a>
     </div>
   </div>
 </div>
+
 <button id="startBtn">スタート！</button>
 <div class="control-buttons">
   <button class="control-button" id="left-btn">←</button>

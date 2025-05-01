@@ -178,10 +178,28 @@ function endGame() {
   clearInterval(dropIntervalId);
   startBtn.textContent = 'スタート！';
   startBtn.disabled = false;
-  document.getElementById('gameOverContainer').style.display = 'block';
-  submitScore();
+
+  submitScore(); // スコア処理
   updateShareButtons(score);
+
+  // オーバーレイ表示
+  document.getElementById('overlay').style.display = 'flex';
+  document.getElementById('gameOverContainer').style.display = 'block';
+  showGameOverUI();
 }
+
+// 背景をクリックしたときだけ閉じる
+document.getElementById('overlay').addEventListener('click', (e) => {
+  if (e.target.id === 'overlay') {
+    document.getElementById('overlay').style.display = 'none';
+  }
+});
+
+// 中のUI（gameOverContainer）クリックではバブリングを止める
+document.getElementById('gameOverContainer').addEventListener('click', (e) => {
+  e.stopPropagation();
+});
+
 
 function submitScore() {
     submitScoreBtn.style.display = 'block';  // ボタン表示
@@ -312,5 +330,26 @@ startBtn.addEventListener('click', () => {
     // LINE
     const lineUrl = `https://social-plugins.line.me/lineit/share?url=${shareUrl}`;
     document.getElementById('lineShareButton').href = lineUrl;
+  }
+  
+  function showGameOverUI() {
+    const overlay = document.getElementById('overlay');
+    const container = document.getElementById('gameOverContainer');
+    const game = document.getElementById('game');
+  
+    // overlay表示
+    overlay.style.display = 'block';
+    container.style.display = 'block';
+  
+    // #gameの中央座標を取得
+    const gameRect = game.getBoundingClientRect();
+    const centerX = gameRect.left + gameRect.width / 2;
+    const centerY = gameRect.top + gameRect.height / 2;
+  
+    // #gameOverContainerをその位置に配置（絶対座標で）
+    container.style.position = 'fixed';
+    container.style.left = `${centerX}px`;
+    container.style.top = `${centerY}px`;
+    container.style.transform = 'translate(-50%, -50%)';
   }
   

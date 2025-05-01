@@ -172,23 +172,35 @@ h1 {
   color: #ff4081;
 }
 
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(150, 150, 150, 0.6);
+  z-index: 3000;
+  display: none;
+}
+
 #gameOverContainer {
-    position: absolute;
-    top: 0%; /* ← 少し上に移動（30% → 25%） */
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    display: none;
-    width: 100%;
-  }
+  max-width: 480px; /* ゲーム枠に合わせる */
+  width: 80vw;
+  position: fixed; /* ←JSでも再指定するけど念のため */
+  display: none;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  background: transparent;
+}
   
-  #gameOverImage {
-    width: 200%; /* ← 大きくする（80% → 95%） */
-    max-width: 95%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-  }
+#gameOverImage {
+  width: 100%;
+  max-width: 80vw; 
+  height: auto;
+  display: block;
+  margin: 0 auto; /* 画像の下に余白追加 */
+}
 
   #submitScoreButton {
     display: none; /* 初期は非表示 */
@@ -196,21 +208,23 @@ h1 {
     color: white;
     font-weight: bold;
     font-size: 5vw;
-    padding: 12px 24px;
     border: 2px solid red;
     border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     cursor: pointer;
     transition: all 0.2s ease;
-    margin: 0 auto; /* ← これで中央寄せ */
     margin-top: -25px;
-    display: block; /* ← これも必要（inlineだとmarginが効かない） */
+    width: 220px;
+    font-size: 18px;
+    padding: 10px 16px;
+    margin: 0 auto 12px;
+    display: block;
   }
   
   #submitScoreButton:hover {
     background-color: red;
     color: white;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
   }
   
 
@@ -230,7 +244,7 @@ h1 {
   background: rgba(255, 255, 255, 0.2);
   padding: 20px;
   border-radius: 16px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 .rankItem {
@@ -272,4 +286,23 @@ h1 {
 
 .rankNameScore {
   margin-left: 10px;
+}
+
+#shareButtons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  margin: 0 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);  /* ← 影はこっちに */
+  padding: 0;  /* ← 不要な余白は削る */
+  background: none;
+  border: none;
+}
+
+#shareButtons img {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  box-shadow: none;  /* ← 影をOFFに */
 }
