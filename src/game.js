@@ -303,7 +303,7 @@ startBtn.addEventListener('click', () => {
   
   function updateShareButtons(score) {
     const shareText = `＼ｺｶｺｰﾗｧ／🥤＼ｺｱﾗｧ／🐨＼ｽｺｱｧ／${score}点取ったよ！ #CocaCoala`;
-    const shareUrl = encodeURIComponent('https:/coca-coala.click');
+    const shareUrl = encodeURIComponent('https://coca-coala.click');
   
     // X
     const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${shareUrl}`;
